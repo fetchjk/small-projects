@@ -1,0 +1,17 @@
+import requests
+
+def get_weather(api_key, city="New York"):
+    url = f"<http://api.weatherapi.com/v1/current.json?key={api_key}&q={new_york}>"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        weather_data = response.json()
+        current = weather_data["current"]
+        print(f"Current temperature in {city}: {current['temp_c']}°C")
+        print(f"Condition: {current['condition']['text']}")
+    except requests.exceptions.RequestException as error:
+        print("Error fetching weather data", error)
+
+# usage
+api_key = "1dc71d3b4c9c41e2b58214913241910"
+get_weather(api_key)
